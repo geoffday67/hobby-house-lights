@@ -166,7 +166,7 @@ void connectMQTT() {
   if (mqtt.connect(MQTT_CLIENT)) {
     mqtt.subscribe(SECURITY_TOPIC);
     mqtt.subscribe(LIGHTS_TOPIC);
-    Serial.print("MQTT connected and subscribed");
+    Serial.println("MQTT connected and subscribed");
   } else {
     Serial.print("Error connecting to MQTT ");
     Serial.println(mqtt.state());
@@ -180,7 +180,7 @@ void setup() {
   randomSeed(micros());
 
   analogWriteRange(255);
-  analogWriteFreq(2000);
+  analogWriteFreq(10000);
 
   pinMode(SECURITY_PIN, OUTPUT);
   switchOnSecurity(true);
@@ -213,6 +213,4 @@ void loop() {
     connectWiFi();
     connectMQTT();
   }
-
-  delay(100);
 }
